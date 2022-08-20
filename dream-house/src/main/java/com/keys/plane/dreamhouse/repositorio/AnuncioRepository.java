@@ -8,12 +8,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 
-
+import java.util.Collection;
 import java.util.List;
 
 public interface AnuncioRepository extends JpaRepository<Anuncio, Integer> {
 
     long countBy();
+
+    List<Anuncio> findByIdIn(Collection<List<Integer>> id);
 
     List<Anuncio> findByCidade(String cidade);
 
