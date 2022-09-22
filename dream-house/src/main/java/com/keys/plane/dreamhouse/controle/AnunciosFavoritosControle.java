@@ -28,7 +28,7 @@ public class AnunciosFavoritosControle {
             @PathVariable Integer idAnuncio
 
     ){
-        if(repository.countByIdClienteAndIdAnuncio(idCliente,idAnuncio) > 1){
+        if(repository.countByIdClienteAndIdAnuncio(idCliente,idAnuncio) < 1){
 
             repository.save(new AnunciosFavoritos(idCliente,idAnuncio));
 
