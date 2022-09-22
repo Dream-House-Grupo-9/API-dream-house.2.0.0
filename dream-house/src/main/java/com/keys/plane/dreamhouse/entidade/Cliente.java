@@ -42,7 +42,10 @@ public class Cliente {
     @Length(min = 8, max = 20)
     private String senha;
 
-    @NotNull
+    @JsonIgnore
+    @Column(length = 50 * 1024 * 1024) // 50 Mb
+    private byte[] foto;
+    
     private boolean autenticado;
 
     public Integer getId() {
