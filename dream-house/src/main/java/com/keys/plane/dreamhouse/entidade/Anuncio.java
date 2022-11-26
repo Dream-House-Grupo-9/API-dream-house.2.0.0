@@ -19,7 +19,7 @@ public class Anuncio {
             message = "Informe um telefone válido com ou sem ddd")
     private String telefoneLocatario;
 
-    @PastOrPresent
+    @FutureOrPresent
     private LocalDate dtPublicacao;
 
     @Length(min = 10, max = 300)

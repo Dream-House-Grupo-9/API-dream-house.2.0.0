@@ -1,4 +1,5 @@
 package com.keys.plane.dreamhouse.controle;
+import com.keys.plane.dreamhouse.entidade.Anuncio;
 import com.keys.plane.dreamhouse.entidade.DetalhesAnuncio;
 import com.keys.plane.dreamhouse.repositorio.AnuncioRepository;
 import com.keys.plane.dreamhouse.repositorio.DetalhesAnuncioRepository;
@@ -19,6 +20,29 @@ public class DetalhesAnuncioControle {
 
     @Autowired
     private AnuncioRepository repositoryAnuncio;
+
+
+    @PutMapping("/atualizar-curtidas/{idDetalhes}")
+    public ResponseEntity atualizaCurtidas(@PathVariable Integer idDetalhes){
+
+        if(repository.existsById(idDetalhes)){
+            DetalhesAnuncio detalhes = repository.getById(idDetalhes);
+
+            if(detalhes.getQtdCurtidas() == null){
+                detalhes.setQtdCurtidas(1);
+                repository.save(detalhes);
+
+                return ResponseEntity.status(200).build();
+            }else {
+              detalhes.setQtdCurtidas(detalhes.getQtdCurtidas() + 1);
+              repository.save(detalhes);
+
+              return ResponseEntity.status(200).build();
+            }
+        }
+
+        return ResponseEntity.status(404).build();
+    }
 
 
     @PostMapping

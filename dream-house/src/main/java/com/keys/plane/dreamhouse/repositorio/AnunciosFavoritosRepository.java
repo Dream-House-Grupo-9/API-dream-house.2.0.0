@@ -2,7 +2,6 @@ package com.keys.plane.dreamhouse.repositorio;
 
 
 import com.keys.plane.dreamhouse.entidade.AnunciosFavoritos;
-import com.keys.plane.dreamhouse.entidade.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -15,4 +14,6 @@ public interface AnunciosFavoritosRepository extends JpaRepository<AnunciosFavor
 
 
     Integer countByIdClienteAndIdAnuncio(Integer idCliente, Integer idAnuncio);
+
+    Integer countByidAnuncio(Integer idAnuncio);
 }

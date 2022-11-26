@@ -7,6 +7,9 @@ import javax.validation.constraints.NotNull;
 public class AnunciosFavoritos {
 
 
+    public AnunciosFavoritos() {
+    }
+
     public AnunciosFavoritos(Integer idCliente, Integer idAnuncio) {
         this.idCliente = idCliente;
         this.idAnuncio = idAnuncio;

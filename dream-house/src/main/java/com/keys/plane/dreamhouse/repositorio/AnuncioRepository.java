@@ -44,4 +44,5 @@ public interface AnuncioRepository extends JpaRepository<Anuncio, Integer> {
     @Transactional
     @Modifying
     int atualizarFoto(Integer id, byte[] novaFoto);
+
 }
