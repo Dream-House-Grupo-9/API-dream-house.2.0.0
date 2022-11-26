@@ -21,20 +21,20 @@ public class Cliente {
     private String nome;
 
 
-    @Email
-    @NotBlank
-    @Length(min = 11, max = 60)
+//     @Email
+//     @NotBlank
+//     @Length(min = 11, max = 60)
     private String email;
 
 
-    @Pattern(regexp = "^(?=.*[0-9])"
-            + "(?=.*[a-z])(?=.*[A-Z])"
-            + "(?=.*[!@#$%¨&*()_+`^{}?:;><,.|])"
-            + "(?=\\S+$).{8,20}$",
-            message = "Um caracter especial" +
-                    " \nUma letra maiuscula" +
-                    " \nUm número " +
-                    "\nConter no minimo 8 digitos")
+//     @Pattern(regexp = "^(?=.*[0-9])"
+//             + "(?=.*[a-z])(?=.*[A-Z])"
+//             + "(?=.*[!@#$%¨&*()_+`^{}?:;><,.|])"
+//             + "(?=\\S+$).{8,20}$",
+//             message = "Um caracter especial" +
+//                     " \nUma letra maiuscula" +
+//                     " \nUm número " +
+//                     "\nConter no minimo 8 digitos")
     @NotBlank
     @Length(min = 8, max = 20)
     private String senha;
