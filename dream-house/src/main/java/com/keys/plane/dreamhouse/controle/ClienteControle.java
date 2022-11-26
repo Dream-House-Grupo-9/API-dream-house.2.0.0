@@ -35,7 +35,7 @@ public class ClienteControle {
 
 
     @PostMapping
-    public ResponseEntity cadastrarUsuario(@Valid @RequestBody Cliente novoUsuario) {
+    public ResponseEntity cadastrarUsuario(@RequestBody Cliente novoUsuario) {
 
         if (novoUsuario != null) {
             if(repository.existsByEmail(novoUsuario.getEmail())){
