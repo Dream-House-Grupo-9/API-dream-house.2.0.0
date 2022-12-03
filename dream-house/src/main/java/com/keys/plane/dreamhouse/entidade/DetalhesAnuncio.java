@@ -24,34 +24,28 @@ public class DetalhesAnuncio {
     @NotNull
     private double valorDiaria;
 
-    @NotNull
+
     private double valorSemanal;
 
-    @NotNull
+
     private double valorMes;
 
     @Positive
-    @NotNull
     private int qtdDormitorios;
 
     @Positive
-    @NotNull
     private int qtdToaletes;
 
-    @NotNull
     private boolean garagem;
 
-    @NotNull
     private boolean areaDeTrabalho;
 
-    @NotNull
     private boolean mobiliada;
 
     @NotBlank
     private String categoria;
 
     private Integer qtdCurtidas;
-
 
     public Integer getIdDetalhesAnuncio() {
         return idDetalhesAnuncio;

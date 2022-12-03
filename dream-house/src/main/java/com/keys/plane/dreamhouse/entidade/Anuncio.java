@@ -17,7 +17,7 @@ public class Anuncio {
 
     @Pattern(regexp = "(\\(?\\d{2}\\)?\\s)?(\\d{4,5}\\-\\d{4})",
             message = "Informe um telefone válido com ou sem ddd")
-    private String telefoneLocatario;
+    private String telefone;
 
     @FutureOrPresent
     private LocalDate dtPublicacao;
@@ -48,10 +48,11 @@ public class Anuncio {
 //    @Length( max = 10)
     private int numero;
 
+    @NotBlank
+    private String image;
     @JsonIgnore
     @Column(length = 50 * 1024 * 1024) // 50 Mb
     private byte[] foto;
-
     @ManyToOne
     @NotNull
     private Cliente cliente;
@@ -60,33 +61,20 @@ public class Anuncio {
     @NotNull
     private DetalhesAnuncio detalhe;
 
-
-    public Cliente getCliente() {
-        return cliente;
+    public Integer getId() {
+        return id;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public DetalhesAnuncio getDetalhe() {
-        return detalhe;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setDetalhe(DetalhesAnuncio detalhe) {
-        this.detalhe = detalhe;
-    }
-
-    public Integer getId() { return id;}
-
-    public void setId(Integer id) {this.id = id;}
-
-    public String getTelefoneLocatario() {
-        return telefoneLocatario;
-    }
-
-    public void setTelefoneLocatario(String telefoneLocatario) {
-        this.telefoneLocatario = telefoneLocatario;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public LocalDate getDtPublicacao() {
@@ -153,6 +141,14 @@ public class Anuncio {
         this.numero = numero;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public byte[] getFoto() {
         return foto;
     }
@@ -161,5 +157,19 @@ public class Anuncio {
         this.foto = foto;
     }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
 
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public DetalhesAnuncio getDetalhe() {
+        return detalhe;
+    }
+
+    public void setDetalhe(DetalhesAnuncio detalhe) {
+        this.detalhe = detalhe;
+    }
 }
