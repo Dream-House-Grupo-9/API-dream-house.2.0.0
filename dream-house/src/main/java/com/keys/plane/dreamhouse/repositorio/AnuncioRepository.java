@@ -33,6 +33,12 @@ public interface AnuncioRepository extends JpaRepository<Anuncio, Integer> {
 
     List<Anuncio> findByClienteId(Integer id);
 
+
+    List<Anuncio> findTop4ByOrderByIdDesc();
+
+   // @Query("select * from Anuncio ")
+    //List<Anuncio> getTop4Anuncios();
+
     @Query("select new com.keys.plane.dreamhouse.resposta.CardAnuncioViews(a.bairro, a.cidade, a.detalhe.valorMes) from Anuncio a where a.cliente.id = ?1")
     List<CardAnuncioViews> consultaAnuncioCard(Integer id);
 

@@ -49,6 +49,17 @@ public class  AnuncioControle {
         return status(200).body(anuncios);
     }
 
+    @GetMapping("/get-four-house")
+    public ResponseEntity<List<Anuncio>> getFirst4Anuncio(){
+        List<Anuncio> anuncios = repository.findTop4ByOrderByIdDesc();
+
+        if(anuncios.isEmpty()){
+            return status(204).body(anuncios);
+        }
+
+        return status(200).body(anuncios);
+    }
+
     @GetMapping("{id}")
     public ResponseEntity getAnuncioPorId(@PathVariable int id){
 
