@@ -1,9 +1,6 @@
 package com.keys.plane.dreamhouse.entidade;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 
 @Entity
 public class DetalhesAnuncio {
@@ -11,40 +8,18 @@ public class DetalhesAnuncio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idDetalhesAnuncio;
-
-    @NotNull
     private boolean ativoDiaria;
-
-    @NotNull
     private boolean ativoSemanal;
-
-    @NotNull
     private boolean ativoMensal;
-
-    @NotNull
     private double valorDiaria;
-
-
     private double valorSemanal;
-
-
     private double valorMes;
-
-    @Positive
     private int qtdDormitorios;
-
-    @Positive
     private int qtdToaletes;
-
     private boolean garagem;
-
     private boolean areaDeTrabalho;
-
     private boolean mobiliada;
-
-    @NotBlank
     private String categoria;
-
     private Integer qtdCurtidas;
 
     public Integer getIdDetalhesAnuncio() {

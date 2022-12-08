@@ -13,46 +13,20 @@ public class Anuncio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-
-    @Pattern(regexp = "(\\(?\\d{2}\\)?\\s)?(\\d{4,5}\\-\\d{4})",
-            message = "Informe um telefone válido com ou sem ddd")
-    private String telefone;
-
-    @FutureOrPresent
+    private String telefoneLocatario;
     private LocalDate dtPublicacao;
-
-    @Length(min = 10, max = 300)
-    @NotBlank
     private String descricao;
-
-    @FutureOrPresent
     private LocalDate inicioDisponibilidade;
-
-    @FutureOrPresent
     private LocalDate finalDisponibilidade;
-
-    @NotBlank
-    @Length(min = 3, max = 60)
     private String cidade;
-
-    @NotBlank
-    @Length(min = 3, max = 60)
     private String bairro;
-
-    @NotBlank
-    @Length(min = 8, max = 60)
     private String logradouro;
-
-    @Positive
-//    @Length( max = 10)
     private int numero;
 
-    @NotBlank
-    private String image;
     @JsonIgnore
     @Column(length = 50 * 1024 * 1024) // 50 Mb
     private byte[] foto;
+
     @ManyToOne
     @NotNull
     private Cliente cliente;
@@ -61,20 +35,33 @@ public class Anuncio {
     @NotNull
     private DetalhesAnuncio detalhe;
 
-    public Integer getId() {
-        return id;
+
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public DetalhesAnuncio getDetalhe() {
+        return detalhe;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setDetalhe(DetalhesAnuncio detalhe) {
+        this.detalhe = detalhe;
+    }
+
+    public Integer getId() { return id;}
+
+    public void setId(Integer id) {this.id = id;}
+
+    public String getTelefoneLocatario() {
+        return telefoneLocatario;
+    }
+
+    public void setTelefoneLocatario(String telefoneLocatario) {
+        this.telefoneLocatario = telefoneLocatario;
     }
 
     public LocalDate getDtPublicacao() {
@@ -141,14 +128,6 @@ public class Anuncio {
         this.numero = numero;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public byte[] getFoto() {
         return foto;
     }
@@ -157,19 +136,5 @@ public class Anuncio {
         this.foto = foto;
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public DetalhesAnuncio getDetalhe() {
-        return detalhe;
-    }
-
-    public void setDetalhe(DetalhesAnuncio detalhe) {
-        this.detalhe = detalhe;
-    }
 }

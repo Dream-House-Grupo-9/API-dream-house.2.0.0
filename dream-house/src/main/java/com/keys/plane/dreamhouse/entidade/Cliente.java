@@ -1,12 +1,7 @@
 package com.keys.plane.dreamhouse.entidade;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.validator.constraints.Length;
-
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 
 @Entity
 public class Cliente {
@@ -14,29 +9,8 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-
-    @NotBlank
-    @Length(min = 3, max = 200)
     private String nome;
-
-
-//     @Email
-//     @NotBlank
-//     @Length(min = 11, max = 60)
     private String email;
-
-
-//     @Pattern(regexp = "^(?=.*[0-9])"
-//             + "(?=.*[a-z])(?=.*[A-Z])"
-//             + "(?=.*[!@#$%¨&*()_+`^{}?:;><,.|])"
-//             + "(?=\\S+$).{8,20}$",
-//             message = "Um caracter especial" +
-//                     " \nUma letra maiuscula" +
-//                     " \nUm número " +
-//                     "\nConter no minimo 8 digitos")
-    @NotBlank
-    @Length(min = 8, max = 20)
     private String senha;
 
     @JsonIgnore
