@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 import static org.springframework.http.ResponseEntity.status;
 
@@ -49,6 +48,15 @@ public class  AnuncioControle {
         return status(200).body(anuncios);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Anuncio> getAnuncio(@PathVariable Integer id){
+        if(repository.existsById(id)){
+            return ResponseEntity.status(200).body(repository.getById(id));
+        }
+
+        return ResponseEntity.status(404).build();
+    }
+
     @GetMapping("/get-four-house")
     public ResponseEntity<List<Anuncio>> getFirst4Anuncio(){
         List<Anuncio> anuncios = repository.findTop4ByOrderByIdDesc();
@@ -60,17 +68,6 @@ public class  AnuncioControle {
         return status(200).body(anuncios);
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity getAnuncioPorId(@PathVariable int id){
-
-        Optional<Anuncio> anuncio = repository.findById(id);
-
-        if(anuncio == null){
-            return status(404).body(anuncio);
-        }
-
-        return status(200).body(anuncio);
-    }
 
     @GetMapping("/cliente/{id}")
     public ResponseEntity <List<Anuncio>> listaAnuncioPorId(@PathVariable int id){
@@ -145,42 +142,41 @@ public class  AnuncioControle {
         return status(404).build();
     }
 
-    @PatchMapping(value = "/foto/{codigo}", consumes = "image/jpeg")
-    public ResponseEntity patchFoto(@PathVariable Integer codigo,
-                                    @RequestBody byte[] novaFoto) {
+//    @PatchMapping(value = "/foto/{codigo}", consumes = "image/jpeg")
+//    public ResponseEntity patchFoto(@PathVariable Integer codigo,
+//                                    @RequestBody byte[] novaFoto) {
+//
+//        int atualizados = repository.atualizarFoto(codigo, novaFoto);
+//        if (atualizados == 0) {
+//            return status(404).build();
+//        }
+//        return status(200).build();
+//    }
 
-        int atualizados = repository.atualizarFoto(codigo, novaFoto);
-        if (atualizados == 0) {
-            return status(404).build();
-        }
-        return status(200).build();
-    }
+//    @GetMapping(value = "/foto/{codigo}", produces = "image/jpeg")
+//    public ResponseEntity<byte[]> getFoto(@PathVariable Integer codigo) {
+//
+//        byte[] foto = repository.getFoto(codigo);
+//        if (foto == null) {
+//            return status(404).build();
+//        }
+//        return status(200).body(foto);
+//    }
 
-    @GetMapping(value = "/foto/{codigo}", produces = "image/jpeg")
-    public ResponseEntity<byte[]> getFoto(@PathVariable Integer codigo) {
-
-        byte[] foto = repository.getFoto(codigo);
-        if (foto == null) {
-            return status(404).build();
-        }
-        return status(200).body(foto);
-    }
-
-    @GetMapping("/exportar-anuncio")
-    public ResponseEntity anuncio() {
-        List<Anuncio> lista = repository.findAll();
-        String relatorio = "";
-        for (Anuncio anuncio : lista) {
-            relatorio += ""+anuncio.getId()+", "+anuncio.getDtPublicacao()+", "+anuncio.getDescricao()+", " +
-                    ""+anuncio.getInicioDisponibilidade()+", "+anuncio.getFinalDisponibilidade()+", " +
-                    ""+anuncio.getCidade()+", "+anuncio.getBairro()+", "+anuncio.getLogradouro()+", " +
-                    ""+anuncio.getNumero()+", "+"Casa"+"\r\n";
-        }
-        return status(200)
-                .header("content-type", "text/csv")
-                .header("content-disposition", "filename=\"relatorio-de-anuncios.csv\"")
-                .body(relatorio);
-    }
-
+//    @GetMapping("/exportar-anuncio")
+//    public ResponseEntity anuncio() {
+//        List<Anuncio> lista = repository.findAll();
+//        String relatorio = "";
+//        for (Anuncio anuncio : lista) {
+//            relatorio += ""+anuncio.getId()+", "+anuncio.getDtPublicacao()+", "+anuncio.getDescricao()+", " +
+//                    ""+anuncio.getInicioDisponibilidade()+", "+anuncio.getFinalDisponibilidade()+", " +
+//                    ""+anuncio.getCidade()+", "+anuncio.getBairro()+", "+anuncio.getLogradouro()+", " +
+//                    ""+anuncio.getNumero()+", "+"Casa"+"\r\n";
+//        }
+//        return status(200)
+//                .header("content-type", "text/csv")
+//                .header("content-disposition", "filename=\"relatorio-de-anuncios.csv\"")
+//                .body(relatorio);
+//    }
 
 }
