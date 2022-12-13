@@ -98,7 +98,7 @@ public class ClienteControle {
             }else{
                 repository.setAutenticacao(true, cliente.getId());
 
-                return status(200).body(cliente);
+                return status(200).body(cliente.getId());
             }
 
         }
