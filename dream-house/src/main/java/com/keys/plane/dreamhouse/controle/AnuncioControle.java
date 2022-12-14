@@ -50,11 +50,7 @@ public class  AnuncioControle {
 
     @GetMapping("/{id}")
     public ResponseEntity<Anuncio> getAnuncio(@PathVariable Integer id){
-        if(repository.existsById(id)){
-            return ResponseEntity.status(200).body(repository.getById(id));
-        }
-
-        return ResponseEntity.status(404).build();
+        return ResponseEntity.of(repository.findById(id));
     }
 
     @GetMapping("/get-four-house")
