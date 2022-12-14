@@ -1,6 +1,7 @@
 package com.keys.plane.dreamhouse.controle;
 
 import com.keys.plane.dreamhouse.entidade.Cliente;
+import com.keys.plane.dreamhouse.entidade.ClienteId;
 import com.keys.plane.dreamhouse.repositorio.ClienteRepository;
 import com.keys.plane.dreamhouse.requisicao.AutenticacaoClienteRequisicao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,7 +99,9 @@ public class ClienteControle {
             }else{
                 repository.setAutenticacao(true, cliente.getId());
 
-                return status(200).body(cliente.getId());
+                ClienteId id  = new ClienteId(cliente.getId());
+
+                return status(200).body(id);
             }
 
         }
